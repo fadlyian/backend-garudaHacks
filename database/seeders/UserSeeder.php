@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
 
         // $role1 = Role::create(['name' => 'admin']);
         $role2 = Role::create(['name' => 'company']);
-        $role3 = Role::create(['name' => 'user']);
+        $role3 = Role::create(['name' => 'jobseeker']);
 
         $user1 = User::create([
             'name' => 'ian',

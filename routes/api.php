@@ -4,19 +4,17 @@ use App\Http\Controllers\Auth\AuthenticatedApiController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\TestController;
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::get('/user', [AuthenticatedApiController::class, 'getUser']);
 });
 
-Route::get('/halodek', function(){
-    return "halodek";
-});
-
+Route::post('/login', [AuthenticatedApiController::class, 'login']);
 // Route::post('/register', [AuthenticatedApiController::class, 'register']);
-// Route::post('/login', [AuthenticatedApiController::class, 'login']);
 
 // Route::middleware('auth:sanctum')->group(function () {
 //     Route::post('/logout', [AuthenticatedApiController::class, 'logout']);

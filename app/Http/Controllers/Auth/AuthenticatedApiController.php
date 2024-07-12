@@ -8,11 +8,18 @@ use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
 class AuthenticatedApiController extends Controller
 {
+    public function getUser()
+    {
+        $user = Auth::user();
+        return new UserResource($user);
+    }
+
     public function register(Request $request)
     {
         $fields = $request->validate([
@@ -60,14 +67,14 @@ class AuthenticatedApiController extends Controller
         ], Response::HTTP_OK);
     }
 
-        public function logout(Request $request) {
-            $request->user()->currentAccessToken()->delete();
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
 
-            $cookie = cookie()->forget('token');
+        $cookie = cookie()->forget('token');
 
-            return response()->json([
-                'message' => 'Logged out successfully!'
-            ])->withCookie($cookie);
-        }
-
+        return response()->json([
+            'message' => 'Logged out successfully!'
+        ])->withCookie($cookie);
+    }
 }
