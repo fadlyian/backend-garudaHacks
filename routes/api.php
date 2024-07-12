@@ -15,10 +15,10 @@ Route::get('/halodek', function(){
     return "halodek";
 });
 
-Route::post('/register', [AuthenticatedApiController::class, 'register']);
-Route::post('/login', [AuthenticatedApiController::class, 'login']);
+// Route::post('/register', [AuthenticatedApiController::class, 'register']);
+// Route::post('/login', [AuthenticatedApiController::class, 'login']);
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/logout', [AuthenticatedApiController::class, 'logout']);
-    Route::get('/test', [TestController::class, 'index']);
-});
+// Route::middleware('auth:sanctum')->group(function () {
+//     Route::post('/logout', [AuthenticatedApiController::class, 'logout']);
+//     Route::get('/test', [TestController::class, 'index']);
+// });
